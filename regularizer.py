@@ -10,18 +10,12 @@ import codecs
 
 
 def regularization(input_name):
-    standard_f = codecs.open('./standard.katakana', 'r', 'utf-8')
-    non_standard_f = codecs.open('./non-standard.katakana', 'r', 'utf-8')
+    standards = codecs.open('./datas/standard.katakana', 'r', 'utf-8').read().splitlines()
+    non_standard_list = codecs.open('./datas/non-standard.katakana', 'r', 'utf-8').read().splitlines()
     small_characters = {'ァ': 'ア', 'ィ': 'イ', 'ゥ': 'ウ', 'ェ': 'エ', 'ォ': 'オ', 'ャ': 'ヤ', 'ュ': 'ユ', 'ョ': 'ヨ'}
-    standards = []
     non_standards = {}
-    for standard in standard_f:
-        standards.append(standard.strip())
-    for non_standard in non_standard_f:
-        non_standard = non_standard.strip()
-        # 非標準表記
+    for non_standard in non_standard_list:
         pre = non_standard.split()[0]
-        # 非標準表記の標準的な表記形
         post = non_standard.split()[1]
         non_standards[pre] = post
     # 1
